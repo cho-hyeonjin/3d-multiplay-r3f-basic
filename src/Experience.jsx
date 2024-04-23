@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unknown-property */
-import { Html, OrbitControls } from "@react-three/drei";
+import { Float, Html, OrbitControls, Text } from "@react-three/drei";
 // import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 import * as THREE from "three";
@@ -7,22 +7,22 @@ import * as THREE from "three";
 function Experience() {
   const cubeRef = useRef();
 
-  // useFrame((state, delta) => {
-  //   cubeRef.current.rotation.y += delta;
-  // });
-
-  // /** 카메라 꺼내기 */
-  // useFrame((state, delta) => {
-  //   const angle = state.clock.elapsedTime;
-
-  //   state.camera.position.x = Math.sin(angle) * 8;
-  //   state.camera.position.z = Math.cos(angle) * 8;
-  //   state.camera.lookAt(0, 0, 0);
-  // });
-
   return (
     <>
       <OrbitControls enableDamping={true} />
+
+      <Float speed={7} floatIntensity={7}>
+        <Text
+          font="./fonts/NotoSansKR-Medium.otf"
+          fontSize={0.8}
+          color="salmon"
+          position={[0, 2.4, 0]}
+          maxWidth={4}
+          textAlign="center"
+        >
+          R3F & drei
+        </Text>
+      </Float>
 
       <Html
         position={[0, 2, 0]}

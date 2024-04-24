@@ -52,12 +52,13 @@ export default function Experience() {
       <OrbitControls />
       <ambientLight intensity={0.5} />
       <directionalLight
+        shadow-mapSize={[1024, 1024]}
         shadow-camera-near={1}
         shadow-camera-far={10}
-        shadow-camera-top={2}
-        shadow-camera-bottom={-2}
-        shadow-camera-right={2}
-        shadow-camera-left={-2}
+        shadow-camera-top={20}
+        shadow-camera-bottom={-20}
+        shadow-camera-right={20}
+        shadow-camera-left={-20}
         ref={light}
         castShadow
         position={[1, 2, 3]}

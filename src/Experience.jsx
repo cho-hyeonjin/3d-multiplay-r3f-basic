@@ -1,22 +1,17 @@
-/* eslint-disable react/no-unknown-property */
 import * as THREE from "three";
-import { OrbitControls, useGLTF } from "@react-three/drei";
+import { OrbitControls } from "@react-three/drei";
 import { Perf } from "r3f-perf";
-import { useLoader } from "@react-three/fiber";
-import { GLTFLoader } from "three/examples/jsm/Addons.js";
+import TreeBoy from "./TreeBoy";
 
 export default function Experience() {
-  // const model = useLoader(GLTFLoader, "./books_with_magnifier.glb");
-  const model = useGLTF("./books_with_magnifier.glb");
-
   return (
     <>
       <Perf position="top-left" />
-      <ambientLight intensity={0.5} />
+      <ambientLight intensity={0.3} />
       <directionalLight position={[1, 2, 3]} intensity={1.5} castShadow />
       <OrbitControls makeDefault />
       <group>
-        <primitive object={model.scene} scale={10} position-y={-0.7} />
+        <TreeBoy scale={2} position-y={-0.8} />
         <mesh
           receiveShadow
           position-y={-1}

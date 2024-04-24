@@ -1,81 +1,29 @@
 /* eslint-disable react/no-unknown-property */
-import { OrbitControls, useHelper } from "@react-three/drei";
-import { useThree } from "@react-three/fiber";
-import { useControls } from "leva";
+import { OrbitControls } from "@react-three/drei";
+import { useRef } from "react";
 import { Perf } from "r3f-perf";
-import { useEffect, useRef } from "react";
 import * as THREE from "three";
-
 export default function Experience() {
   const cubeRef = useRef();
   const sphereRef = useRef();
-  const light = useRef();
-
-  useHelper(light, THREE.DirectionalLightHelper, 1);
-
-  const scene = useThree((state) => state.scene);
-
-  useEffect(() => {
-    const helper = new THREE.CameraHelper(light.current.shadow.camera);
-    scene.add(helper);
-
-    return () => {
-      scene.remmove(helper);
-    };
-  }, [light.current]);
-
-  const {
-    position,
-    color: x,
-    visible,
-    select,
-  } = useControls({
-    position: {
-      value: -2,
-      min: -2,
-      max: 2,
-      step: 0.01,
-    },
-    color: "#ff0000",
-    visible: true,
-    select: {
-      options: ["CASE1", "CASE2", "CASE3"],
-    },
-  });
-
-  console.log(select);
 
   return (
     <>
-      {<Perf position="bottom-left" />}
-
-      <OrbitControls />
+      <Perf position="top-left" />
+      <OrbitControls enableDamping={false} />
       <ambientLight intensity={0.5} />
-      <directionalLight
-        shadow-mapSize={[1024, 1024]}
-        shadow-camera-near={1}
-        shadow-camera-far={10}
-        shadow-camera-top={20}
-        shadow-camera-bottom={-20}
-        shadow-camera-right={20}
-        shadow-camera-left={-20}
-        ref={light}
-        castShadow
-        position={[1, 2, 3]}
-        intensity={1.5}
-      />
+      <directionalLight position={[1, 2, 3]} intensity={1.5} />
 
       <group>
-        <mesh castShadow receiveShadow ref={sphereRef} position-x={position}>
+        <mesh ref={sphereRef} position-x={-2}>
           <sphereGeometry />
-          <meshStandardMaterial color={x} visible={visible} />
+          <meshStandardMaterial color="#82E0AA" />
         </mesh>
-        <mesh castShadow ref={cubeRef} position-x={2} scale={1.5}>
+        <mesh ref={cubeRef} position-x={2} scale={1.5}>
           <boxGeometry />
           <meshStandardMaterial color="#F9E79F" />
         </mesh>
         <mesh
-          receiveShadow
           position-y={-1}
           rotation-x={THREE.MathUtils.degToRad(-90)}
           scale={10}

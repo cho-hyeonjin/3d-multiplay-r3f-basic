@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import { OrbitControls } from "@react-three/drei";
 import { Perf } from "r3f-perf";
-import TreeBoy from "./TreeBoy";
+import TreeBoy from "./Girl";
 
 export default function Experience() {
   return (

@@ -8,9 +8,26 @@ export default function Experience() {
   const cubeRef = useRef();
   const sphereRef = useRef();
 
-  const { position } = useControls({
-    position: -2,
+  const {
+    position,
+    color: x,
+    visible,
+    select,
+  } = useControls({
+    position: {
+      value: -2,
+      min: -2,
+      max: 2,
+      step: 0.01,
+    },
+    color: "#ff0000",
+    visible: true,
+    select: {
+      options: ["CASE1", "CASE2", "CASE3"],
+    },
   });
+
+  console.log(select);
 
   return (
     <>
@@ -21,7 +38,7 @@ export default function Experience() {
       <group>
         <mesh ref={sphereRef} position-x={position}>
           <sphereGeometry />
-          <meshStandardMaterial color="#82E0AA" />
+          <meshStandardMaterial color={x} visible={visible} />
         </mesh>
         <mesh ref={cubeRef} position-x={2} scale={1.5}>
           <boxGeometry />

@@ -1,8 +1,9 @@
 /* eslint-disable react/no-unknown-property */
 import { OrbitControls, useHelper } from "@react-three/drei";
+import { useThree } from "@react-three/fiber";
 import { useControls } from "leva";
 import { Perf } from "r3f-perf";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
 export default function Experience() {
@@ -11,6 +12,17 @@ export default function Experience() {
   const light = useRef();
 
   useHelper(light, THREE.DirectionalLightHelper, 1);
+
+  const scene = useThree((state) => state.scene);
+
+  useEffect(() => {
+    const helper = new THREE.CameraHelper(light.current.shadow.camera);
+    scene.add(helper);
+
+    return () => {
+      scene.remmove(helper);
+    };
+  }, [light.current]);
 
   const {
     position,
@@ -40,6 +52,12 @@ export default function Experience() {
       <OrbitControls />
       <ambientLight intensity={0.5} />
       <directionalLight
+        shadow-camera-near={1}
+        shadow-camera-far={10}
+        shadow-camera-top={2}
+        shadow-camera-bottom={-2}
+        shadow-camera-right={2}
+        shadow-camera-left={-2}
         ref={light}
         castShadow
         position={[1, 2, 3]}

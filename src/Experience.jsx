@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unknown-property */
 import { OrbitControls } from "@react-three/drei";
 import { useControls } from "leva";
+import { Perf } from "r3f-perf";
 import { useRef } from "react";
 import * as THREE from "three";
 
@@ -31,6 +32,8 @@ export default function Experience() {
 
   return (
     <>
+      <Perf />
+
       <OrbitControls />
       <ambientLight intensity={0.5} />
       <directionalLight position={[1, 2, 3]} intensity={1.5} />

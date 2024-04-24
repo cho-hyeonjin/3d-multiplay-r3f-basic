@@ -13,10 +13,16 @@ export default function TreeBoy(props) {
         obj.castShadow = true;
       }
     });
-  }, [treeBoy]);
+  });
 
   const action = animations.actions.Walk;
   console.log(action);
   action.play();
+
+  window.setTimeout(() => {
+    animations.actions.Run.paly();
+    animations.actions.Run.crossFadeFrom(animations.actions.walk, 1);
+  }, 3000);
+
   return <primitive object={treeBoy.scene} {...props} />;
 }

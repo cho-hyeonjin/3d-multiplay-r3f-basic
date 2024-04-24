@@ -6,7 +6,7 @@ import Experience from "./Experience";
 function App() {
   return (
     <>
-      <Canvas>
+      <Canvas shadows>
         <Experience></Experience>
       </Canvas>
     </>

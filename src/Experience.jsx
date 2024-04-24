@@ -32,22 +32,23 @@ export default function Experience() {
 
   return (
     <>
-      <Perf />
+      {<Perf position="bottom-left" />}
 
       <OrbitControls />
       <ambientLight intensity={0.5} />
-      <directionalLight position={[1, 2, 3]} intensity={1.5} />
+      <directionalLight castShadow position={[1, 2, 3]} intensity={1.5} />
 
       <group>
-        <mesh ref={sphereRef} position-x={position}>
+        <mesh castShadow receiveShadow ref={sphereRef} position-x={position}>
           <sphereGeometry />
           <meshStandardMaterial color={x} visible={visible} />
         </mesh>
-        <mesh ref={cubeRef} position-x={2} scale={1.5}>
+        <mesh castShadow ref={cubeRef} position-x={2} scale={1.5}>
           <boxGeometry />
           <meshStandardMaterial color="#F9E79F" />
         </mesh>
         <mesh
+          receiveShadow
           position-y={-1}
           rotation-x={THREE.MathUtils.degToRad(-90)}
           scale={10}

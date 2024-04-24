@@ -5,6 +5,8 @@
   width: 100%;
   height: 100vh;
   overflow: hidden;
+  /** 배경 설정 방법 1 - css로 */
+  /* background-color: red; */
 }
 
 .label > div {

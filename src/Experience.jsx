@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unknown-property */
-import { OrbitControls } from "@react-three/drei";
+import { Environment, OrbitControls } from "@react-three/drei";
 import { useRef } from "react";
 import { Perf } from "r3f-perf";
 import * as THREE from "three";
@@ -9,10 +9,27 @@ export default function Experience() {
 
   return (
     <>
+      {/* posx, posy, negx, negy, posz, negz로 이미지 붙이기 */}
+      {/* <Environment
+        background
+        files={[
+          "./Yokohama/posx.jpg",
+          "./Yokohama/negx.jpg",
+          "./Yokohama/posy.jpg",
+          "./Yokohama/negy.jpg",
+          "./Yokohama/posz.jpg",
+          "./Yokohama/negz.jpg",
+        ]}
+      /> */}
+      {/* 좀 더 선명한 이미지 hdri */}
+      {/* <Environment background files="./hdri/lake_pier_4k.hdr" /> */}
+      {/* 화질은 구리지만 Three.js에 내장된 프리셋도 있음 */}
+      {/* <Environment background preset="sunset" /> */}
+
       <Perf position="top-left" />
       <OrbitControls enableDamping={false} />
-      <ambientLight intensity={0.5} />
-      <directionalLight position={[1, 2, 3]} intensity={1.5} />
+      {/* <ambientLight intensity={0.5} />
+      <directionalLight position={[1, 2, 3]} intensity={1.5} /> */}
 
       <group>
         <mesh ref={sphereRef} position-x={-2}>

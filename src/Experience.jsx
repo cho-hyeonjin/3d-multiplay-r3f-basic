@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unknown-property */
-import { OrbitControls } from "@react-three/drei";
+import { OrbitControls, useHelper } from "@react-three/drei";
 import { useControls } from "leva";
 import { Perf } from "r3f-perf";
 import { useRef } from "react";
@@ -8,6 +8,9 @@ import * as THREE from "three";
 export default function Experience() {
   const cubeRef = useRef();
   const sphereRef = useRef();
+  const light = useRef();
+
+  useHelper(light, THREE.DirectionalLightHelper, 1);
 
   const {
     position,
@@ -36,7 +39,12 @@ export default function Experience() {
 
       <OrbitControls />
       <ambientLight intensity={0.5} />
-      <directionalLight castShadow position={[1, 2, 3]} intensity={1.5} />
+      <directionalLight
+        ref={light}
+        castShadow
+        position={[1, 2, 3]}
+        intensity={1.5}
+      />
 
       <group>
         <mesh castShadow receiveShadow ref={sphereRef} position-x={position}>

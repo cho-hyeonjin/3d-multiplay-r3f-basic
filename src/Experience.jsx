@@ -1,12 +1,11 @@
 /* eslint-disable react/no-unknown-property */
 import * as THREE from "three";
-import { OrbitControls } from "@react-three/drei";
+import { OrbitControls, useGLTF } from "@react-three/drei";
 import { Perf } from "r3f-perf";
-import { useLoader } from "@react-three/fiber";
-import { GLTFLoader } from "three/examples/jsm/Addons.js";
 
 export default function Experience() {
-  const model = useLoader(GLTFLoader, "./books_with_magnifier.glb");
+  // const model = useLoader(GLTFLoader, "./books_with_magnifier.glb");
+  const model = useGLTF("./books_with_magnifier.glb");
 
   return (
     <>

@@ -1,27 +1,32 @@
 import * as THREE from "three";
 import { OrbitControls } from "@react-three/drei";
-import { Perf } from "r3f-perf";
-import TreeBoy from "./Girl";
-
+import { Physics, RigidBody } from "@react-three/rapier";
 export default function Experience() {
   return (
     <>
-      <Perf position="top-left" />
-      <ambientLight intensity={0.3} />
-      <directionalLight position={[1, 2, 3]} intensity={1.5} castShadow />
+      <ambientLight intensity={0.5} />
+      <directionalLight castShadow position={[1, 2, 3]} intensity={1.5} />
       <OrbitControls makeDefault />
-      <group>
-        <TreeBoy scale={2} position-y={-0.8} />
-        <mesh
-          receiveShadow
-          position-y={-1}
-          rotation-x={THREE.MathUtils.degToRad(-90)}
-          scale={10}
-        >
-          <circleGeometry />
-          <meshStandardMaterial color="#5D6D7E" />
-        </mesh>
-      </group>
+      <Physics debug>
+        <RigidBody colliders="ball" position={[-1.5, 2, 0]}>
+          <mesh castShadow>
+            <sphereGeometry />
+            <meshStandardMaterial color="#82E0AA" />
+          </mesh>
+        </RigidBody>
+        <RigidBody position={[1.5, 2, 0]}>
+          <mesh castShadow>
+            <boxGeometry />
+            <meshStandardMaterial color="#F9E79F" />
+          </mesh>
+        </RigidBody>
+        <RigidBody type="fixed">
+          <mesh position-y={-1}>
+            <boxGeometry args={[10, 0.1, 10]} />
+            <meshStandardMaterial color="#5D6D7E" />
+          </mesh>
+        </RigidBody>
+      </Physics>
     </>
   );
 }
